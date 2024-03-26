@@ -1,10 +1,3 @@
---[[
-
-yes i know the formatting is shitty, cause of some lua beautifier
-its also cuz i copied it off some random pastebin that took it from my original v3rm thread which is now gone cuz v3rm gone
-
-]]
-
 local reset = false
 
 pcall(
@@ -37,7 +30,7 @@ local main = window:MakeTab({Name = "Main"})
 main:AddToggle(
     {
         Name = "Aimbot",
-        Default = false,
+        Default = true,
         Callback = function(v)
             _G.Aimbot = v
         end
@@ -310,10 +303,10 @@ function arc()
     end
 end
 
-function getNearestPart(torso)
+function getNearestPart(legs)
     local dist, part = 9e9
     for i, v in pairs(plr.Character:GetChildren()) do
-        if v:IsA("Part") and torso then
+        if v:IsA("Part") and legs then
             local mag = (v.Position - torso.Position).Magnitude
             if dist > mag then
                 dist = mag
@@ -336,7 +329,7 @@ function stepped()
 
                 if root and hasBall then
                     root.Size = Vector3.new(2.1, 2.1, 1.1)
-                    root.BrickColor = BrickColor.new("Lime green")
+                    root.BrickColor = BrickColor.new("Black")
                     root.Material = Enum.Material.Neon
 
                     if dist >= 13 and dist <= 16 then
@@ -379,12 +372,12 @@ function stepped()
                         changePower(25)
                         root.Transparency = 0
                     else
-                        root.Transparency = 1
+                        root.Transparency = 0
                     end
                 elseif root and not hasBall and _G.Aimbot then
-                    root.Transparency = 1
+                    root.Transparency = 0
                 elseif root and not _G.Aimbot then
-                    root.Transparency = 1
+                    root.Transparency = 0
                 end
             end
 
